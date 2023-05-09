@@ -1,0 +1,309 @@
+@import "~react-vis/dist/styles/plot";
+@import "~react-vis/dist/styles/legends";
+@import "~react-vis/dist/styles/radial-chart";
+@import "~react-vis/dist/styles/treemap";
+@import "~react-vis/dist/styles/examples";
+@import "~rc-datepicker/lib/style.css";
+@import "~react-data-grid/lib/styles.css";
+//@import "~react-data-grid/dist/react-data-grid.css";
+@import "~rsuite-table/dist/css/rsuite-table.css";
+@import "~react-drawer/lib/react-drawer.css";
+
+//recharts
+.css-sourceMap-modules-importLoaders-1-localIdentName-ReactDrawer__drawer___2r5VH-sass {
+  position: fixed;
+  background: linear-gradient(45deg, #843cf7, #38b8f2);
+  box-shadow: -5px 0px 5px -5px rgba(0, 0, 0, 0.55);
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+}
+.css-2b097c-container {
+  position: relative;
+  box-sizing: border-box;
+  width: inherit;
+}
+.css-sourceMap-modules-importLoaders-1-localIdentName-ReactDrawer__drawer-right___h_uSC-sass {
+  top: 0;
+  right: 0;
+  padding-top: 100px;
+  padding-left: 1%;
+  padding-right: 1%;
+  width: 50%;
+  height: 100%;
+  position: fixed;
+}
+.react-datepicker-component {
+  background: transparent;
+  height: 40px;
+  width: 100%;
+  .react-datepicker-input {
+    background: transparent;
+    height: 40px;
+  }
+}
+
+path.recharts-sector {
+  @include themify($themes) {
+    //stroke: themed("colorBackground");
+    stroke: #fff;
+  }
+}
+
+.recharts-legend-item-text {
+  @include themify($themes) {
+    color: themed("textColor");
+  }
+}
+
+.recharts-text {
+  fill: #fff;
+  opacity: 0.8;
+  font-size: 12px;
+}
+
+.recharts-cartesian-axis-line {
+  opacity: 0.7;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  // fill: $color-additional;
+  fill: #fff;
+  opacity: 0.8;
+}
+
+.recharts-brush-slide {
+  @include themify($themes) {
+    fill: themed("colorBackgroundBody");
+  }
+  //fill: #dee3eb;
+  fill-opacity: 1;
+}
+
+.recharts-brush-traveller {
+  transform: translateX(-8px);
+
+  rect {
+    @include themify($themes) {
+      fill: themed("colorBackground");
+    }
+    width: 12px;
+    stroke: #dee3eb;
+  }
+
+  line {
+    @include themify($themes) {
+      stroke: themed("textColor");
+    }
+    stroke: #dee3eb;
+    transform: translateX(4px);
+  }
+
+  &:first-of-type {
+    transform: translateX(0);
+  }
+}
+
+.recharts-tooltip-cursor {
+  fill-opacity: 0.2;
+}
+
+//chartsjs
+
+.card {
+  .chartjs-size-monitor {
+    & + .card__title:not(:first-child) {
+      margin-top: 0;
+    }
+  }
+}
+
+// rc-notification
+.rc-notification {
+  position: fixed;
+  z-index: 100;
+}
+
+.rc-notification-notice {
+  display: block;
+  width: auto;
+  line-height: 1.5;
+  vertical-align: middle;
+  position: relative;
+}
+
+.rc-notification-notice-close {
+  position: absolute;
+  cursor: pointer;
+  outline: none;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.2;
+  text-decoration: none;
+}
+
+.rc-notification-notice-close-x:after {
+  content: "×";
+}
+
+.rc-notification-fade-enter {
+  opacity: 0;
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+  animation-play-state: paused;
+}
+
+.rc-notification-fade-leave {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+  animation-play-state: paused;
+}
+
+.rc-notification-fade-enter.rc-notification-fade-enter-active {
+  animation-name: rcNotificationFadeIn;
+  animation-play-state: running;
+
+  &.right-up {
+    animation-name: rcNotificationRightFadeIn;
+  }
+
+  &.left-up {
+    animation-name: rcNotificationLeftFadeIn;
+  }
+}
+
+.rc-notification-fade-leave.rc-notification-fade-leave-active {
+  animation-name: rcDialogFadeOut;
+  animation-play-state: running;
+}
+
+@keyframes rcNotificationFadeIn {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rcNotificationLeftFadeIn {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rcNotificationRightFadeIn {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rcDialogFadeOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.rc-notification {
+  @include directify($directions) {
+    #{directed('left')}: auto !important;
+  }
+  top: 60px !important;
+  height: 0;
+
+  & > span {
+    height: 0;
+    display: block;
+  }
+}
+
+.rc-notification-notice-close {
+  @include directify($directions) {
+    #{directed('right')}: 45px;
+  }
+  top: 15px;
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 300;
+  color: #646777;
+  text-shadow: none;
+  opacity: 0.2;
+
+  &:hover {
+    opacity: 0.5;
+    color: #646777;
+  }
+}
+.project-summary__statistic {
+  .recharts-wrapper {
+    direction: ltr;
+    .recharts-legend-wrapper {
+      ul.recharts-default-legend {
+        text-align: center;
+        line-height: 24px;
+
+        .recharts-legend-item {
+          .recharts-surface {
+            @include directify($directions) {
+              #{directed('margin-right')}: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.recharts-cartesian-axis-ticks {
+  direction: ltr;
+}
+
+.recharts-default-legend {
+  @include directify($directions) {
+    direction: #{directed("direction")};
+  }
+}
+// Forms
+.react-select__value-container {
+  padding: 0 8px !important;
+}
+.rs-table-body-row-wrapper {
+  width: 100%;
+}
+.rs-table {
+  width: 100%;
+  background: transparent;
+}
+.rs-table-row {
+  background: transparent;
+  width: 100%;
+}
+.rs-table-row-header .rs-table-cell {
+  background: transparent;
+}
+.rs-table-cell-content {
+  background: transparent;
+}
+.rs-table-cell {
+  background: transparent;
+  width: 100%;
+}

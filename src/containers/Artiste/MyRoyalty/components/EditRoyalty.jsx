@@ -1,0 +1,111 @@
+import React, { useEffect, useState } from "react";
+import { Modal, Button, ButtonToolbar, Container } from "reactstrap";
+import { reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+const required = (value) => (value ? undefined : "Required");
+const maxLength = (max) => (value) =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined;
+const maxLength15 = maxLength(15);
+const alphaNumeric = (value) =>
+  value && /[^a-zA-Z0-9 ]/i.test(value)
+    ? "Only alphanumeric characters"
+    : undefined;
+export const minLength = (min) => (value) =>
+  value && value.length < min ? `Must be ${min} characters or more` : undefined;
+export const minLength2 = minLength(2);
+const renderedField = ({
+  label,
+  input,
+  type,
+  meta: { touched, error, warning },
+}) => (
+  <div style={{ width: "inherit" }}>
+    <input
+      {...input}
+      placeholder={label}
+      type={type}
+      style={{ height: "40px" }}
+      className="form__form-group-field"
+    />
+    {touched &&
+      ((error && (
+        <span style={{ fontSize: "13px", color: "red" }}>{error}</span>
+      )) ||
+        (warning && (
+          <span style={{ fontSize: "13px", color: "red" }}>{warning}</span>
+        )))}
+  </div>
+);
+
+const EditRoyalty = (props) => {
+  return (
+    <form className="form">
+      <div className="form__form-group">
+        <span className="form__form-group-label typography-message">Title</span>
+        <div className="form__form-group-field">
+          <input
+            type="email"
+            placeholder="Email"
+            required
+            value={props.email}
+            onChange={props.addEmail}
+          />
+        </div>
+      </div>
+      <div className="form__form-group">
+        <span className="form__form-group-label typography-message">Title</span>
+        <div className="form__form-group-field">
+          <input
+            type="text"
+            placeholder="Full name"
+            required
+            value={props.fullname}
+            onChange={props.addName}
+          />
+        </div>
+      </div>
+
+      <div className="form__form-group">
+        <span className="form__form-group-label typography-message">Share</span>
+        <div className="form__form-group-field">
+          <input
+            type="text"
+            placeholder="e.g. 0.5, 23.3"
+            required
+            value={props.share}
+            onChange={props.addShare}
+          />
+        </div>
+      </div>
+      <div className="form__form-group">
+        <span className="form__form-group-label typography-message">
+          Phone Number
+        </span>
+        <div className="form__form-group-field">
+          <input
+            type="text"
+            placeholder="e.g. +234 803 3339 267"
+            required
+            value={props.phone}
+            onChange={props.addPhone}
+          />
+        </div>
+      </div>
+      <div className="form__form-group">
+        <span className="form__form-group-label">Description</span>
+        <div className="form__form-group-field">
+          <textarea
+            placeholder="royalty description..."
+            required
+            value={props.description}
+            onChange={props.addDescription}
+          />
+        </div>
+      </div>
+    </form>
+  );
+};
+
+export default connect((state) => ({}))(EditRoyalty);
